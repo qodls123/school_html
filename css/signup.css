@@ -1,0 +1,98 @@
+@charset "UTF-8";
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Pretendard';
+}
+body {
+    background-color: #f5f5f5;
+}
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none
+}
+header {
+    width: 1920px;
+    height: 100px;
+    background-color: #020019;
+    opacity: 90%;
+    margin: 0 auto;
+}
+.header-wrap {
+    width: 1800px;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-wrap .nav ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:30px;
+}
+.header-wrap .nav ul li a {
+    color: #fff;
+    font-family: 'pre-bold';
+    transition: all .3s;
+}
+.header-wrap .nav ul li a:hover{
+     background: linear-gradient(35deg, #67c7d8, #60a5fa);
+     background-clip: text; 
+     -webkit-text-fill-color: transparent;
+}
+.signup-container {
+  width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.signup-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.signup-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.signup-container input {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.signup-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4f9eff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+/* 로그인 표시 */
+#user-menu {
+  color: white;
+  font-family: 'pre-bold';
+}
+
+#user-menu button {
+  background: none;
+  border: none;
+  color: #67c7d8;
+  font-weight: bold;
+  cursor: pointer;
+}

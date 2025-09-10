@@ -1,0 +1,248 @@
+@charset "UTF-8";
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Pretendard';
+}
+body {
+    background-color: #f5f5f5;
+}
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none
+}
+/* 상세 글 영역 */
+.detail {
+  width: 1000px;
+  margin: 80px auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.detail h2 {
+  font-size: 40px;
+  font-family: 'pre-bold';
+  margin-bottom: 20px;
+  word-break: keep-all;
+}
+
+.detail p {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.detail .detail-content {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-height: 200px;
+  line-height: 1.6;
+  font-size: 18px;
+  background: #fafafa;
+}
+
+/* 버튼 영역 */
+.detail-btns {
+  margin-top: 40px;
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+}
+
+.detail-btns button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.detail-btns button:first-child {
+  background-color: #60a5fa;
+  color: #fff;
+}
+
+.detail-btns button:first-child:hover {
+  background-color: #3b82f6;
+}
+
+.detail-btns button:nth-child(2) {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+.detail-btns button:nth-child(2):hover {
+  background-color: #dc2626;
+}
+
+.detail-btns button:last-child {
+  background-color: #9ca3af;
+  color: #fff;
+}
+
+.detail-btns button:last-child:hover {
+  background-color: #6b7280;
+}
+/* 댓글 영역 */
+.comments {
+  max-width: 800px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+.comments h3 {
+  font-size: 28px;
+  font-family: pre-bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* 댓글 입력 폼 */
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.comment-form input,
+.comment-form textarea {
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  resize: none;
+}
+
+.comment-form input {
+  max-width: 250px; /* 작성자는 길게 안 쓰니까 짧게 */
+}
+
+.comment-form textarea {
+  min-height: 80px;
+}
+
+.comment-form button {
+  align-self: flex-end;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #4f46e5;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.comment-form button:hover {
+  background: #3730a3;
+}
+
+/* 댓글 리스트 */
+#comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#comment-list li {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+#comment-list p {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+}
+
+.comment-meta {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+
+/* 댓글 버튼 묶음 */
+.comment-btn-group {
+  margin-top: 10px;
+  display: flex;
+  gap: 12px; /* ✅ 버튼 간 간격 */
+}
+
+/* 수정 버튼 */
+.comment-edit-btn {
+  padding: 6px 14px;
+  background-color: #2563eb; /* ✅ 파란 계열 */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.comment-edit-btn:hover {
+  background-color: #1e40af; /* hover 시 더 진한 파란색 */
+}
+
+/* 삭제 버튼 */
+.comment-delete-btn {
+  padding: 6px 14px;
+  background-color: #dc2626; /* ✅ 빨간 계열 */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.comment-delete-btn:hover {
+  background-color: #991b1b;
+}
+
+/*footer*/
+.footer {
+    width: 1920px;
+    margin: 0 auto;
+    height: 180px;
+    background-color: #020019;
+}
+.footer-line {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(45deg, #67c7d8,#60a5fa);
+}
+.footer-wrap {
+    width: 1800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 100px;
+}
+.footer-info {
+    color: #fff;
+    padding-top: 40px;
+}
+/* 로그인 표시 */
+#user-menu {
+  color: white;
+  font-family: 'pre-bold';
+}
+
+#user-menu button {
+  background: none;
+  border: none;
+  color: #67c7d8;
+  font-weight: bold;
+  cursor: pointer;
+}

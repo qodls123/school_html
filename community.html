@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/community.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="./js/community.js" defer></script>
+    <script src="./js/common.js" defer></script>
+</head>
+<body>
+    <header>
+        <!-- <div class="header-wrap">
+            <div class="header-logo">
+                <a href="index.html"><img src="./img/logo/header_logo.png" alt=""></a>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="about_us.html">About us</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="professor.html">Professor</a></li>
+                    <li><a href="#">Project</a></li>
+                    <li><a href="community.html">Community</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>        -->
+    </header>
+    <section class="main">
+        <div class="main-image">
+            <img src="./img/about_us/edu_bg.png" alt="">
+            <div class="main-title">
+                <p>학과게시판</p><br>
+                <p>COMMUNITY</p>
+            </div>          
+        </div>
+    </section>
+    <section class="community-table">
+        <div class="community-title">
+            <p>학과 게시판</p>
+        </div>
+
+        <!-- 검색 영역 -->
+        <div class="board-search">
+            <select id="search-type">
+                <option value="title">제목</option>
+                <option value="author">작성자</option>
+                <option value="content">내용</option>
+            </select>
+            <input type="text" id="search-keyword" placeholder="검색어를 입력하세요">
+            <button type="button" onclick="searchBoards()">검색</button>
+        </div>
+
+
+        <!-- 게시판 목록 테이블 -->
+        <table class="board-table">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                </tr>
+            </thead>
+            <tbody id="board-list">
+                
+            </tbody>
+        </table>
+
+        <!-- 페이지네이션 -->
+        <!-- 페이지네이션 -->
+        <div class="pagination"></div>
+
+
+        <!-- 글쓰기 버튼 -->
+        <div class="board-btn">
+            <a href="write.html" class="write-btn" id="write-btn" style="display: none;">글쓰기</a>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-line"></div>
+        <div class="footer-wrap">
+            <img src="./img/logo/footer_logo.png" alt="">
+            <div class="footer-info">
+                <p>[41765] 대구광역시 서구 국채보상로43길 15<br>
+                TEL 053-567-0101 (입학문의 대표번호 1588-2282)<br>
+                FAX 053-567-0104<br><br>
+                COPYRIGHT 2025 BY AIENGINEERING. ALL RIGHTS RESERVED.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

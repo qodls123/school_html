@@ -1,0 +1,143 @@
+@charset "UTF-8";
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Pretendard';
+}
+body {
+    background-color: #f5f5f5;
+}
+ul, ol {
+    list-style: none;
+}
+a {
+    text-decoration: none
+}
+
+/* 글쓰기 영역 */
+.write {
+    max-width: 800px;
+    margin: 120px auto;
+    background: #fff;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.write h2 {
+    font-size: 50px;
+    margin-bottom: 40px;
+    color: #222;
+    font-family: pre-bold;
+}
+
+.write-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.write-form label {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.write-form input,
+.write-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 18px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+/* 파일 업로드 input */
+.write-form input[type="file"] {
+    border: none;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.write-form input:focus,
+.write-form textarea:focus {
+    border-color: #60a5fa; /* 파란색 포커스 */
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.submit-btn, .cancel-btn {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #67c7d8, #60a5fa);
+    color: white;
+}
+
+.submit-btn:hover {
+    opacity: 0.85;
+}
+
+.cancel-btn {
+    background: #e5e7eb;
+    color: #333;
+}
+
+.cancel-btn:hover {
+    background: #d1d5db;
+}
+
+/*footer*/
+.footer {
+    width: 1920px;
+    margin: 0 auto;
+    height: 180px;
+    background-color: #020019;
+}
+.footer-line {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(45deg, #67c7d8,#60a5fa);
+}
+.footer-wrap {
+    width: 1800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 100px;
+}
+.footer-info {
+    color: #fff;
+    padding-top: 40px;
+}
+/* 로그인 표시 */
+#user-menu {
+  color: white;
+  font-family: 'pre-bold';
+}
+
+#user-menu button {
+  background: none;
+  border: none;
+  color: #67c7d8;
+  font-weight: bold;
+  cursor: pointer;
+}

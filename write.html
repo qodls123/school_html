@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글쓰기</title>
+    <link rel="stylesheet" href="./css/write.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/font.css">
+    <script src="./js/write.js" defer></script>
+    <script src="./js/common.js" defer></script>
+</head>
+<body>
+<header>
+    <!-- <div class="header-wrap">
+        <div class="header-logo">
+            <a href="index.html"><img src="./img/logo/header_logo.png" alt=""></a>
+        </div>
+        <div class="nav">
+            <ul>
+                <li><a href="about_us.html">About us</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="professor.html">Professor</a></li>
+                <li><a href="#">Project</a></li>
+                <li><a href="community.html">Community</a></li>
+            </ul>
+        </div>
+    </div>        -->
+</header>
+
+<section class="write">
+    <h2>✍️ 글쓰기</h2>
+    <form id="writeForm" class="write-form" enctype="multipart/form-data">
+        <label for="title">제목</label>
+        <input type="text" id="title" name="title" placeholder="제목을 입력하세요">
+
+        <label for="content">내용</label>
+        <textarea id="content" name="content" rows="8" placeholder="내용을 입력하세요"></textarea>
+<!-- 
+        <label for="author">작성자</label>
+        <input type="text" id="author" name="author" placeholder="작성자 이름을 입력하세요"> -->
+
+        <label for="file">첨부파일</label>
+        <input type="file" id="file" name="file">
+
+        <div class="btn-group">
+            <button type="button" class="submit-btn" onclick="createBoard()">등록</button>
+            <button type="button" class="cancel-btn" onclick="location.href='community.html'">취소</button>
+        </div>
+    </form>
+</section>
+<footer class="footer">
+        <div class="footer-line"></div>
+        <div class="footer-wrap">
+            <img src="./img/logo/footer_logo.png" alt="">
+            <div class="footer-info">
+                <p>[41765] 대구광역시 서구 국채보상로43길 15<br>
+                TEL 053-567-0101 (입학문의 대표번호 1588-2282)<br>
+                FAX 053-567-0104<br><br>
+                COPYRIGHT 2025 BY AIENGINEERING. ALL RIGHTS RESERVED.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,231 @@
+@charset "UTF-8";
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Pretendard';
+}
+body {
+    background-color: #f5f5f5;
+}
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none
+}
+header {
+    width: 1920px;
+    height: 100px;
+    background-color: #020019;
+    opacity: 90%;
+    margin: 0 auto;
+}
+.header-wrap {
+    width: 1800px;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-wrap .nav ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:30px;
+}
+.header-wrap .nav ul li a {
+    color: #fff;
+    font-family: 'pre-bold';
+    transition: all .3s;
+}
+.header-wrap .nav ul li a:hover{
+     background: linear-gradient(35deg, #67c7d8, #60a5fa);
+     background-clip: text; 
+     -webkit-text-fill-color: transparent;
+}
+.main-image {
+    width: 1920px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+}
+.main-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+.main-title p:first-child {
+    font-size: 24px;
+}
+.main-title p:last-child {
+    font-size: 48px;
+    font-family: pre-bold;
+}
+
+/* 로그인 표시 */
+#user-menu {
+  color: white;
+  font-family: 'pre-bold';
+}
+
+#user-menu button {
+  background: none;
+  border: none;
+  color: #67c7d8;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 프로젝트 영역 */
+.ai-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 60px auto;
+  max-width: 900px; /* 넓게 */
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.tab-btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  background: #e0e0e0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.tab-btn.active {
+  background: #0077ff;
+  color: white;
+}
+
+.ai-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 100%;        /* 카드 폭 넓히기 */
+  max-width: 700px;   /* 최대폭 제한 */
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ai-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ai-card label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+}
+
+.ai-card input {
+  flex: 1;
+  margin-left: 15px;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.ai-card button {
+  background: #0077ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.ai-card button:hover {
+  background: #005bcc;
+}
+
+.hidden {
+  display: none;
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 17px;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.rag-desc {
+  margin: 20px 0;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.rag-future {
+  margin-top: 40px;
+  padding: 25px;
+  background: #f9fafc;
+  border-radius: 15px;
+  text-align: left; /* 설명문은 왼쪽 정렬이 더 자연스러움 */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.rag-future h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.rag-future p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+.rag-future ul {
+  margin: 15px 0 20px 20px;
+}
+
+.rag-future ul li {
+  margin: 10px 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+/*footer*/
+.footer {
+    width: 1920px;
+    margin: 0 auto;
+    height: 180px;
+    background-color: #020019;
+}
+.footer-line {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(45deg, #67c7d8,#60a5fa);
+}
+.footer-wrap {
+    width: 1800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 100px;
+}
+.footer-info {
+    color: #fff;
+    padding-top: 40px;
+}

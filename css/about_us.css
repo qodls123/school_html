@@ -1,0 +1,334 @@
+@charset "UTF-8";
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Pretendard';
+}
+body {
+    background-color: #f5f5f5;
+}
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none
+}
+header {
+    width: 1920px;
+    height: 100px;
+    background-color: #020019;
+    opacity: 90%;
+    margin: 0 auto;
+}
+.header-wrap {
+    width: 1800px;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-wrap .nav ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:30px;
+}
+.header-wrap .nav ul li a {
+    color: #fff;
+    font-family: 'pre-bold';
+    transition: all .3s;
+}
+.header-wrap .nav ul li a:hover{
+     background: linear-gradient(35deg, #67c7d8, #60a5fa);
+     background-clip: text; 
+     -webkit-text-fill-color: transparent;
+}
+.main-image {
+    width: 1920px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+}
+.main-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+.main-title p:first-child {
+    font-size: 24px;
+}
+.main-title p:last-child {
+    font-size: 48px;
+    font-family: pre-bold;
+}
+.invite {
+    width: 1920px;
+    height: 800px;
+    margin: 0 auto;
+    padding-top: 150px;
+    position: relative;
+}
+.invite-title {
+    display: flex;
+    justify-content: center; /* 가로 정렬 */
+    align-items: center;     /* 세로 정렬 (높이 있을 경우) */
+    padding-bottom: 60px;
+}
+.invite-title p {
+    font-size: 88px;
+    font-family: pre-bold;
+    /* filter: blur(6px); */
+    opacity: 0.3;
+    will-change: filter, opacity; /* 성능 힌트 */
+    transform: skewX(-15deg); /* X축 기준으로 -15도 기울기 */
+}
+/* 최종 상태(진하게) */
+.invite-done .invite-title p { opacity: 1 !important; }
+/* (선택) 모션 최소화 환경 */
+@media (prefers-reduced-motion: reduce) {
+  .invite-title p { filter: none; opacity: 1; }
+}
+.invite-title p:first-child {
+    background-image: linear-gradient(90deg, #67c7d8, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/* .invite-title p:last-child {
+    color: rgba(0, 0, 0, 0.5);
+} */
+.invite-text p {
+    font-size: 20px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
+}
+.vertical-line {
+  /* 라인을 정렬하고 높이를 지정하기 위한 부모 요소 */
+  position: relative;
+  width: 50px; /* 부모 요소의 너비 (라인 자체의 너비는 아님) */
+  height: 150px; /* 라인의 전체 높이 */
+  margin: 0 auto;
+  margin-top: 40px;
+  --fill: 33.3%;                 /* ✅ 시작 비율(파란색 높이) */
+}
+
+.vertical-line::before {
+  /* 가상 요소를 이용해 실제 라인 생성 */
+  content: '';
+  /* display: block; */
+  
+  /* 부모 요소 중앙에 위치시키기 */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  /* 라인의 크기 지정 */
+  width: 3px; /* 라인의 두께 */
+  height: 100%; /* 부모 높이와 동일하게 */
+  
+  /* 🎨 핵심: 색상 및 비율 지정 */
+  background: linear-gradient(
+    to bottom, /* 위에서 아래로 색상 적용 */
+    #60a5fa var(--fill),
+    #cccccc var(--fill)
+  );
+  
+  /* 모서리 둥글게 만들기 */
+  border-radius: 25px;
+}
+.invite-last {
+    text-align: center;
+    margin-top: 40px;
+}
+.invite-last p {
+    font-size: 32px;
+    font-family: pre-mid; 
+}
+.invite-last p:first-child {
+    color: #60a5fa;
+}
+.curri, .project {
+    width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content:space-between;
+    gap: 380px;
+    margin-bottom: 150px;
+}
+.curri-left p:first-child, .project-right p:first-child, .job-title, .faq-title {
+    font-size: 22px;
+    color: #60a5fa;
+    margin-bottom: 35px;
+}
+.curri-left p:nth-of-type(2), .project-right p:nth-of-type(2), .job-subtitle, .faq-subtitle {
+    font-family: pre-bold;
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+.curri-left p:nth-of-type(3), .project-right p:nth-of-type(3), .desc {
+    font-size: 16px;
+    font-family: pre-reg;
+}
+
+.curri-right img, .project-left img {
+    border-radius: 25px;
+    width: 740px;
+}
+.project-right {
+    text-align: right;
+}
+.job{
+  width:1600px; height:800px; margin:0 auto; position:relative; overflow:hidden;
+}
+
+/* 텍스트는 처음에 로고 위를 가리는 레이어 */
+.job-text {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  text-align:center; z-index:2; padding:24px 36px; border-radius:16px;
+  /* 배경은 사이트 톤(불투명)으로 두면 실제로 '뒤에서' 숨습니다 */
+}
+
+.logo-layer{ position:absolute; inset:0; z-index:1; }
+
+/* 최종 위치는 left/top (--x,--y)로 고정.
+   transform 은 '중앙→퍼짐→정착'만 담당합니다. */
+.logo{
+  position:absolute; width:150px; opacity:0; z-index:1; /* start: 텍스트 뒤 */
+  left: var(--x); top: var(--y);
+  transform: translate(calc(-50% + var(--fromX,0px)),
+                       calc(-50% + var(--fromY,0px))) scale(.4) rotate(0deg);
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,.12));
+}
+
+.logo.boom{
+  --dur: 2.2s; /* 느긋하게 */
+  animation: explode-settle var(--dur) cubic-bezier(.22,.72,.18,.99) forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+/* 정렬 구간에선 텍스트 위로 나오게 */
+.logo.above{ z-index:3; }
+
+/* 최종 프레임에서 행/지그재그 오프셋을 적용 */
+.logo.settled{
+  transform: translate(-50%, calc(-50% + var(--rowShift, 0px))) scale(1) rotate(0);
+  opacity:1;
+}
+
+@keyframes explode-settle{
+  0%{
+    opacity:0;
+    transform: translate(calc(-50% + var(--fromX)), calc(-50% + var(--fromY)))
+               scale(.4) rotate(0);
+  }
+  55%{ /* 섹션(1600x800) 안에서만 크게 퍼짐 */
+    opacity:1;
+    transform: translate(calc(-50% + var(--sx)), calc(-50% + var(--sy)))
+               scale(1.08) rotate(var(--rot,0deg));
+  }
+  100%{
+    opacity:1;
+    transform: translate(-50%, -50%) scale(1) rotate(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .logo{ opacity:1; transform:none; animation:none !important; }
+}
+
+.faq {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 150px 0px;
+}
+
+.faq-text {
+  text-align: center;
+  height: 200px;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 30px;
+  
+}
+
+.faq-question div:first-child {
+  font-family: pre-mid;
+  font-size: 20px;
+}
+
+.faq-arrow {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.faq-answer {
+  height: 0px;
+  overflow: hidden;
+  background-color: #fff;
+  transition: height .35s ease;
+  font-size: 15px;
+  font-family: pre-mid;
+  color: #797878;
+  padding: 0px 30px;
+  border-bottom: 1px solid #e5e5e5;
+  line-height: 22px;
+}
+
+.faq-arrow.rotate {
+  transform: rotate(180deg);
+}
+/* 실제 내용은 자연 높이를 가짐 */
+.faq-answer-inner { padding: 10px 0 15px; }
+
+/* 접근성/모션 환경 배려 */
+@media (prefers-reduced-motion: reduce) {
+  .faq-answer { transition: none; }
+  .faq-arrow  { transition: none; }
+}
+
+
+/*footer*/
+.footer {
+    width: 1920px;
+    margin: 0 auto;
+    height: 180px;
+    background-color: #020019;
+}
+.footer-line {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(45deg, #67c7d8,#60a5fa);
+}
+.footer-wrap {
+    width: 1800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 100px;
+}
+.footer-info {
+    color: #fff;
+    padding-top: 40px;
+}
+/* 로그인 표시 */
+#user-menu {
+  color: white;
+  font-family: 'pre-bold';
+}
+
+#user-menu button {
+  background: none;
+  border: none;
+  color: #67c7d8;
+  font-weight: bold;
+  cursor: pointer;
+}

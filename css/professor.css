@@ -1,0 +1,154 @@
+@charset "UTF-8";
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Pretendard';
+}
+body {
+    background-color: #f5f5f5;
+}
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none
+}
+.main-image {
+    width: 1920px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+}
+.main-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+.main-title p:first-child {
+    font-size: 24px;
+}
+.main-title p:last-child {
+    font-size: 48px;
+    font-family: pre-bold;
+}
+.professor {
+    width: 1500px;
+    height: 2500px;
+    margin: 0 auto;
+    padding-top: 150px;
+}
+.professor-card {
+  position: relative;      /* 기준 잡기 */
+  width: 1500px;
+  height: 700px;
+  background-color: #fff;
+  border-radius: 25px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  gap: 70px;
+  align-items: center;
+
+  /* 간격을 아래가 아니라 '다음 카드의 위쪽'으로 전환 */
+  margin-top: 90px;
+}
+
+/* 첫 카드만 위 간격 제거 */
+.professor-card:first-child {
+  margin-top: 0;
+}
+
+/* 첫 카드 빼고, 각 카드의 '위쪽' 중앙에 선 그리기 */
+.professor-card:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -45px; /* 90px 간격의 정중앙 */
+  height: 0;
+  border-top: 3px dotted rgba(0,0,0,0.2);
+}
+
+.professor-image {
+    padding-left: 120px;
+}
+.professor-image img {
+    width: 340px;
+    height: 450px;
+    border-radius: 25px;
+}
+.professor-invite {
+    height: 450px;
+}
+.professor-name {
+    display: flex;
+    justify-content: flex-start;
+    align-items:end;
+    gap: 15px;
+}
+.professor-name h1 {
+    font-size: 48px;
+    font-family: pre-bold;
+    position: relative;
+    display: inline-block; /* 글자 높이에 맞게 정렬 */
+    padding-left: 20px;    /* 막대랑 글자 사이 간격 */
+}
+.professor-name h1::before {
+  content: "";
+  position: absolute;
+  left: 0;         /* h1의 맨 왼쪽 */
+  top: 0;
+  width: 8px;      /* 막대 두께 */
+  height: 80%;    /* h1 높이에 맞게 */
+  background-color: #60a5fa; /* 막대 색상 */
+}
+.professor p {
+    font-size: 18px;
+    font-family: pre-semib;
+}
+.professor-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 200px;
+    margin-top: 30px;
+}
+/*footer*/
+.footer {
+    width: 1920px;
+    margin: 0 auto;
+    height: 180px;
+    background-color: #020019;
+}
+.footer-line {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(45deg, #67c7d8,#60a5fa);
+}
+.footer-wrap {
+    width: 1800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 100px;
+}
+.footer-info {
+    color: #fff;
+    padding-top: 40px;
+}
+/* 로그인 표시 */
+#user-menu {
+  color: white;
+  font-family: 'pre-bold';
+}
+
+#user-menu button {
+  background: none;
+  border: none;
+  color: #67c7d8;
+  font-weight: bold;
+  cursor: pointer;
+}

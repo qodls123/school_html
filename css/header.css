@@ -1,0 +1,75 @@
+header {
+    width: 1920px;
+    margin:  0 auto;
+    height: 100px;
+    background-color: #020019;
+}
+.header-wrap {
+    width: 1800px;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-wrap .nav ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:30px;
+}
+.header-wrap .nav ul li a {
+    color: #fff;
+    font-family: 'pre-bold';
+    transition: all .3s;
+}
+.header-wrap .nav ul li a:hover{
+     background: linear-gradient(35deg, #67c7d8, #60a5fa);
+     background-clip: text; 
+     -webkit-text-fill-color: transparent;
+}
+
+/* Project li 감싸기 */
+.project-with-rag {
+  position: relative;   /* 기준점 */
+}
+
+/* RAG 말풍선 */
+.rag-bubble {
+  position: absolute;
+  top: -26px;          /* Project 위로 띄우기 */
+  right: -20px;        /* 오른쪽 정렬 */
+  background: #e63946; /* 빨간 배경 */
+  color: #ffeb3b;      /* 노란 텍스트 */
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  animation: float 2.5s ease-in-out infinite;
+  z-index: 10;         /* 다른 요소 위로 */
+}
+
+/* 꼬리 (삼각형) */
+.rag-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -13px;         /* 말풍선 박스 아래 붙임 */
+  left: 2px;           /* 말풍선 왼쪽에서 꼬리 시작 */
+  width: 0;
+  height: 0;
+  border-width: 10px;    /* 삼각형 크기 */
+  border-style: solid;
+  border-color: #e63946 transparent transparent transparent;
+  transform: rotate(-15deg); /* 대각선 느낌 */
+  z-index: 9;
+}
+
+/* 말풍선 둥둥 애니메이션 */
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
