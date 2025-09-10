@@ -1,4 +1,6 @@
-const API_URL = "http://localhost:10000/api/users";
+// ✅ localhost 대신 상대경로 사용
+// const API_URL = "http://localhost:10000/api/users"; ❌
+const API_URL = "/api/users";  // ✅ 이렇게 수정
 
 document.getElementById("signupForm").addEventListener("submit", async function (e) {
   e.preventDefault();

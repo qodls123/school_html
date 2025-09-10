@@ -20,7 +20,8 @@ async function checkLoginStatus() {
   if (!userMenu) return;
 
   try {
-    const res = await fetch("http://localhost:10000/api/users/me", {
+    // ✅ localhost → 상대 경로
+    const res = await fetch("/api/users/me", {
       credentials: "include"
     });
 
@@ -43,7 +44,8 @@ async function checkLoginStatus() {
 // 3. 로그아웃 처리
 async function logout() {
   try {
-    await fetch("http://localhost:10000/api/users/logout", {
+    // ✅ localhost → 상대 경로
+    await fetch("/api/users/logout", {
       method: "POST",
       credentials: "include"
     });
@@ -56,11 +58,11 @@ async function logout() {
 
 window.addEventListener("DOMContentLoaded", loadHeader);
 
-
 // 비로그인 사용자 제한
 async function checkWritePermission() {
   try {
-    const res = await fetch("http://localhost:10000/api/users/me", {
+    // ✅ localhost → 상대 경로
+    const res = await fetch("/api/users/me", {
       credentials: "include"
     });
 

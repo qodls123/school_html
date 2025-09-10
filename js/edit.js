@@ -1,4 +1,6 @@
-const API_URL = "http://localhost:10000/api/boards";
+// ✅ localhost 대신 상대경로 사용
+// const API_URL = "http://localhost:10000/api/boards"; ❌
+const API_URL = "/api/boards";  // ✅ 이렇게 수정
 
 // 쿼리스트링에서 id 가져오기
 const urlParams = new URLSearchParams(window.location.search);
@@ -18,10 +20,9 @@ async function loadBoard() {
   if (response.ok) {
     const board = await response.json();
 
-    // 작성자(author)는 더 이상 프론트에서 수정하지 않음
+    // 작성자(author)는 프론트에서 수정 불가
     document.querySelector("#title").value = board.title;
     document.querySelector("#content").value = board.content;
-
   } else {
     alert("글을 불러오지 못했습니다.");
     location.href = "community.html";
@@ -37,7 +38,7 @@ async function updateBoard() {
     const response = await fetch(`${API_URL}/${boardId}`, {
       method: "PUT",
       body: formData,
-      credentials: "include" // ✅ 세션 쿠키 포함 (중요!)
+      credentials: "include" // ✅ 세션 쿠키 포함
     });
 
     if (response.ok) {

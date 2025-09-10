@@ -130,43 +130,46 @@ CtBtn.forEach(btn => {
 
 
 // 로그인 상태 표시
-  async function checkLoginStatus() {
-    const userMenu = document.getElementById("user-menu");
+async function checkLoginStatus() {
+  const userMenu = document.getElementById("user-menu");
 
-    try {
-      const res = await fetch("http://localhost:10000/api/users/me", {
-        method: "GET",
-        credentials: "include"
-      });
+  try {
+    // ✅ localhost → 상대경로
+    const res = await fetch("/api/users/me", {
+      method: "GET",
+      credentials: "include"
+    });
 
-      if (res.ok) {
-        const user = await res.json();
-        userMenu.innerHTML = `
-          <span style="color:white;">${user.nickname}님</span>
-          <button onclick="logout()" style="margin-left:10px;">로그아웃</button>
-        `;
-      } else {
-        userMenu.innerHTML = `
-          <a href="login.html">Login</a> / <a href="signup.html">Sign Up</a>
-        `;
-      }
-    } catch (err) {
-      console.error("로그인 상태 확인 실패", err);
+    if (res.ok) {
+      const user = await res.json();
+      userMenu.innerHTML = `
+        <span style="color:white;">${user.nickname}님</span>
+        <button onclick="logout()" style="margin-left:10px;">로그아웃</button>
+      `;
+    } else {
+      userMenu.innerHTML = `
+        <a href="login.html">Login</a> / <a href="signup.html">Sign Up</a>
+      `;
     }
+  } catch (err) {
+    console.error("로그인 상태 확인 실패", err);
   }
+}
 
-  async function logout() {
-    try {
-      await fetch("http://localhost:10000/api/users/logout", {
-        method: "POST",
-        credentials: "include"
-      });
-      alert("로그아웃 되었습니다");
-      location.reload();
-    } catch (err) {
-      alert("로그아웃 실패");
-    }
+async function logout() {
+  try {
+    // ✅ localhost → 상대경로
+    await fetch("/api/users/logout", {
+      method: "POST",
+      credentials: "include"
+    });
+    alert("로그아웃 되었습니다");
+    location.reload();
+  } catch (err) {
+    alert("로그아웃 실패");
   }
+}
 
-  checkLoginStatus();
+checkLoginStatus();
+
 

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:10000/api/boards";
+const API_URL = "/api/boards";
 
 // 페이지 로딩 시 게시글 목록 불러오기
 document.addEventListener("DOMContentLoaded", () => loadBoards(0));

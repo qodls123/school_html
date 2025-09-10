@@ -1,5 +1,6 @@
-const API_URL = "http://localhost:10000/api/boards";
-const BASE_URL = "http://localhost:10000";
+// ✅ localhost 대신 상대경로 사용
+const API_URL = "/api/boards";
+const BASE_URL = "";  // 파일 경로는 도메인이 자동으로 붙으므로 빈 값 처리
 
 const urlParams = new URLSearchParams(window.location.search);
 const boardId = urlParams.get("id");
@@ -36,7 +37,7 @@ async function loadBoard() {
   if (board.filePath) {
     const fileArea = document.querySelector("#file-area");
     fileArea.innerHTML = `
-      <img src="${BASE_URL}/${board.filePath}" 
+      <img src="/${board.filePath}" 
            alt="첨부 이미지" 
            style="max-width:600px; margin-top:15px;">
     `;
@@ -44,7 +45,7 @@ async function loadBoard() {
 
   // ✅ 본인만 수정/삭제 버튼 보이기
   try {
-    const userRes = await fetch("http://localhost:10000/api/users/me", {
+    const userRes = await fetch("/api/users/me", {
       credentials: "include"
     });
 
@@ -91,7 +92,7 @@ async function loadComments() {
   const response = await fetch(`${API_URL}/${boardId}/comments`);
   const comments = await response.json();
 
-  const userRes = await fetch("http://localhost:10000/api/users/me", {
+  const userRes = await fetch("/api/users/me", {
     credentials: "include"
   });
   const currentUser = userRes.ok ? await userRes.json() : null;
@@ -127,12 +128,9 @@ async function loadComments() {
       li.appendChild(btnWrapper);
     }
 
-    // ✅ 이 줄이 빠져 있었음!!
     list.appendChild(li);
   });
 }
-
-
 
 /* ---------- 댓글 등록 ---------- */
 async function addComment() {
@@ -145,7 +143,7 @@ async function addComment() {
 
   try {
     // 사용자 정보 가져오기
-    const res = await fetch("http://localhost:10000/api/users/me", {
+    const res = await fetch("/api/users/me", {
       credentials: "include"
     });
 
@@ -207,7 +205,7 @@ async function editComment(id, content) {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       credentials: "include", // ✅ 세션 포함
-      body: JSON.stringify({ content: newContent }) // ✅ 작성자 제외
+      body: JSON.stringify({ content: newContent })
     });
 
     if (response.ok) {
