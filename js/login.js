@@ -1,4 +1,6 @@
-const API_URL = "http://localhost:10000/api/users";
+// ✅ localhost 대신 상대경로 사용
+// const API_URL = "http://localhost:10000/api/users"; ❌
+const API_URL = "/api/users";  // ✅ 이렇게 수정
 
 document.getElementById("loginForm").addEventListener("submit", async function (e) {
   e.preventDefault();
@@ -13,12 +15,12 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ username, password }),
-      credentials: "include" // 세션 유지
+      credentials: "include" // ✅ 세션 유지
     });
 
     if (res.ok) {
       alert("로그인 성공!");
-      location.href = "community.html"; // 원하는 페이지로 이동
+      location.href = "community.html"; // ✅ 로그인 후 이동할 페이지
     } else {
       const error = await res.text();
       alert("로그인 실패: " + error);
