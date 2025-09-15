@@ -18,11 +18,10 @@ document.getElementById("loginBtn").addEventListener("click", async function (e)
     const res = await fetch(LOGIN_API_URL, {
       method: "POST",
       headers: {
-        // ❗ "Content-Type"을 "application/x-www-form-urlencoded"로 변경합니다.
         "Content-Type": "application/x-www-form-urlencoded"
       },
       body: formData,
-      // credentials: "include" 옵션은 동일한 도메인에서는 기본값이므로 생략 가능합니다.
+      credentials: "include"
     });
 
     if (res.ok) {

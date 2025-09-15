@@ -90,7 +90,7 @@ async function createBoard() {
 async function deleteBoard(id) {
     if (!confirm("정말 삭제하시겠습니까?")) return;
 
-    const response = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+    const response = await fetch(`${API_URL}/${id}`, { method: "DELETE", credentials: "include" });
 
     if (response.ok) {
         alert("삭제 완료");
@@ -111,7 +111,8 @@ async function searchBoards() {
     }
 
     try {
-        const response = await fetch(`${API_URL}/search?type=${type}&keyword=${keyword}`);
+        const response = await fetch(`${API_URL}/search?type=${type}&keyword=${keyword}, { credentials:
+  "include" }`);
 
         if (!response.ok) {
             throw new Error("서버 오류 발생");

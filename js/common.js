@@ -21,7 +21,7 @@ async function checkLoginStatus() {
   if (!userMenu) return;
 
   try {
-    const res = await fetch("/api/users/me"); // credentials 옵션 생략 가능
+    const res = await fetch("/api/users/me", { credentials: "include" });
 
     if (res.ok) {
       const user = await res.json();
@@ -42,12 +42,9 @@ async function checkLoginStatus() {
 // 3. 로그아웃 처리
 async function logout() {
   try {
-    // ⛔️ 수정 전: /api/users/logout
-    // await fetch("/api/users/logout", {
-
-    // ✅ 수정 후: /api/logout (SecurityConfig에 정의된 경로)
     await fetch("/api/logout", {
-      method: "POST"
+      method: "POST",
+      credentials: "include"
     });
     alert("로그아웃 되었습니다");
     location.reload();

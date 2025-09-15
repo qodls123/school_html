@@ -18,7 +18,7 @@ async function loadBoard() {
     return;
   }
 
-  const response = await fetch(`${API_URL}/${boardId}`);
+  const response = await fetch(`${API_URL}/${boardId}`, { credentials: "include" });
   if (!response.ok) {
     alert("글을 불러오지 못했습니다.");
     location.href = "community.html";
@@ -89,7 +89,7 @@ async function deleteBoard() {
 
 /* ---------- 댓글 불러오기 ---------- */
 async function loadComments() {
-  const response = await fetch(`${API_URL}/${boardId}/comments`);
+  const response = await fetch(`${API_URL}/${boardId}/comments`, { credentials: "include" });
   const comments = await response.json();
 
   const userRes = await fetch("/api/users/me", {
