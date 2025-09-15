@@ -1,4 +1,6 @@
-const API_URL = "http://localhost:10000/api/boards";
+// ✅ 배포 환경에서는 절대 localhost 쓰지 않기
+// const API_URL = "http://localhost:10000/api/boards"; ❌
+const API_URL = "/api/boards";  // ✅ 상대경로 사용
 
 async function createBoard() {
   const form = document.getElementById("writeForm");
@@ -8,7 +10,7 @@ async function createBoard() {
     const response = await fetch(API_URL, {
       method: "POST",
       body: formData,
-      credentials: "include" // ✅ 이거 없으면 쿠키 전달 안됨!
+      credentials: "include" // ✅ 세션/쿠키 전달 (로그인 유지용)
     });
 
     if (response.ok) {
