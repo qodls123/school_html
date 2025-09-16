@@ -6,6 +6,10 @@ document.getElementById("signupForm").addEventListener("submit", async function 
 
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
+  const realName = document.getElementById("realName").value;
+  const email = document.getElementById("email").value;
+  const nickname = document.getElementById("nickname").value;
+
   // ... (다른 변수들은 동일)
 
   try {
@@ -32,7 +36,7 @@ document.getElementById("signupForm").addEventListener("submit", async function 
       location.href = "login.html";
     } else {
       const error = await res.text();
-      alert("회원가IP 실패: " + error);
+      alert("회원가입 실패: " + error);
     }
   } catch (err) {
     alert("에러 발생: " + err.message);
