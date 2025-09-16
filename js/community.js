@@ -111,8 +111,10 @@ async function searchBoards() {
     }
 
     try {
-        const response = await fetch(`${API_URL}/search?type=${type}&keyword=${keyword}, { credentials:
-  "include" }`);
+        const response = await fetch(`${API_URL}/search?type=${type}&keyword=${keyword}`, {
+            credentials: "include"
+        });
+
 
         if (!response.ok) {
             throw new Error("서버 오류 발생");
