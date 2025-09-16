@@ -37,7 +37,7 @@ async function loadBoard() {
   if (board.filePath) {
     const fileArea = document.querySelector("#file-area");
     fileArea.innerHTML = `
-      <img src="/${board.filePath}" 
+      <img src="${board.filePath}" 
            alt="첨부 이미지" 
            style="max-width:600px; margin-top:15px;">
     `;

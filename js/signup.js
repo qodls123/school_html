@@ -10,7 +10,6 @@ document.getElementById("signupForm").addEventListener("submit", async function 
   const email = document.getElementById("email").value;
   const nickname = document.getElementById("nickname").value;
 
-  // ... (다른 변수들은 동일)
 
   try {
     // ⛔️ 수정 전: /signup
