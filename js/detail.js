@@ -142,24 +142,20 @@ async function addComment() {
   }
 
   try {
-    // 사용자 정보 가져오기
-    const res = await fetch("/api/users/me", {
-      credentials: "include"
-    });
+    // 사용자 정보 확인만 하면 됨 (닉네임은 백엔드에서 자동 주입)
+    const res = await fetch("/api/users/me", { credentials: "include" });
 
     if (!res.ok) {
       alert("로그인 후 댓글 작성이 가능합니다.");
       return;
     }
 
-    const user = await res.json();
-    const nickname = user.nickname;
-
+    // ✅ author는 보내지 말고 content만 전달
     const response = await fetch(`${API_URL}/${boardId}/comments`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ author: nickname, content })
+      body: JSON.stringify({ content })   // 👈 수정
     });
 
     if (response.ok) {
@@ -174,6 +170,7 @@ async function addComment() {
     console.error("댓글 작성 실패", e);
   }
 }
+
 
 /* ---------- 댓글 삭제 ---------- */
 async function deleteComment(id) {
