@@ -116,21 +116,23 @@ async function searchBoards() {
             return;
         }
 
-        // ✅ 검색 결과도 목록과 동일하게 "위쪽 오래된 글, 아래쪽 최신 글"
-        boards
-            .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)) // 오래된 글 → 최신 글 순으로 정렬
-            .forEach((board, index) => {
-                const rowNumber = boards.length - index; // 위쪽 번호 제일 큼, 아래쪽 1
-                const row = `
-                    <tr>
-                        <td>${rowNumber}</td>
-                        <td><a href="detail.html?id=${board.id}">${board.title}</a></td>
-                        <td>${board.author}</td>
-                        <td>${board.createdAt ? board.createdAt.substring(0, 10) : ""}</td>
-                    </tr>
-                `;
-                tableBody.innerHTML += row;
-            });
+        // ✅ 글은 오래된 → 최신 (ASC)
+        boards.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
+        boards.forEach((board, index) => {
+            // ✅ 번호는 위쪽이 가장 큼
+            const rowNumber = boards.length - index;
+
+            const row = `
+                <tr>
+                    <td>${rowNumber}</td>
+                    <td><a href="detail.html?id=${board.id}">${board.title}</a></td>
+                    <td>${board.author}</td>
+                    <td>${board.createdAt ? board.createdAt.substring(0, 10) : ""}</td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
 
         document.querySelector(".pagination").innerHTML = ""; // 검색 시 페이지네이션 제거
     } catch (error) {
@@ -138,4 +140,5 @@ async function searchBoards() {
         alert("검색 실패: " + error.message);
     }
 }
+
 
