@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => loadBoards(0));
 
 /* -------------------- 게시글 목록 -------------------- */
 async function loadBoards(page = 0) {
-    const response = await fetch(`${API_URL}?page=${page}&size=10&sort=createdAt,desc`);
+    const response = await fetch(`${API_URL}?page=${page}&size=10&sort=createdAt,asc`);
     const data = await response.json();
 
     const boards = data.content;         // ✅ 실제 게시글 리스트
