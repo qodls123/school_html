@@ -201,8 +201,8 @@ header {
 /* 검색 영역 */
 .board-search {
     display: flex;
-    flex-direction: column; /* ✅ 세로 배치 */
-    align-items: flex-end;  /* ✅ 오른쪽 정렬 */
+    justify-content: flex-end;
+    align-items: center;
     gap: 10px;
     margin-bottom: 20px;
 }
@@ -229,6 +229,7 @@ header {
     background: #1e40af;
 }
 
+.active-page { font-weight: bold; color: blue; }
 
 /*footer*/
 .footer {
