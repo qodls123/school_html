@@ -88,9 +88,7 @@ async function deleteBoard(id) {
     }
 }
 
-/* ============================= */
-/*        검색 기능 (번호 동일)   */
-/* ============================= */
+// 검색 기능 (최신글 위쪽, 오래된 글 아래쪽, 번호는 위쪽이 큼)
 async function searchBoards() {
     const type = document.querySelector("#search-type").value;
     const keyword = document.querySelector("#search-keyword").value;
@@ -107,7 +105,7 @@ async function searchBoards() {
 
         if (!response.ok) throw new Error("서버 오류 발생");
 
-        const boards = await response.json();
+        let boards = await response.json();
         const tableBody = document.querySelector("#board-list");
         tableBody.innerHTML = "";
 
@@ -116,11 +114,11 @@ async function searchBoards() {
             return;
         }
 
-        // ✅ 글은 오래된 → 최신 (ASC)
-        boards.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+        // ✅ 최신 → 오래된 순으로 정렬
+        boards.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
+        // ✅ 번호: 위쪽이 큰 숫자, 아래쪽이 1
         boards.forEach((board, index) => {
-            // ✅ 번호는 위쪽이 가장 큼
             const rowNumber = boards.length - index;
 
             const row = `
@@ -134,11 +132,13 @@ async function searchBoards() {
             tableBody.innerHTML += row;
         });
 
-        document.querySelector(".pagination").innerHTML = ""; // 검색 시 페이지네이션 제거
+        // ✅ 검색 시 페이지네이션 제거
+        document.querySelector(".pagination").innerHTML = "";
     } catch (error) {
         console.error(error);
         alert("검색 실패: " + error.message);
     }
 }
+
 
 
