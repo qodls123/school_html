@@ -5,26 +5,24 @@ document.addEventListener("DOMContentLoaded", () => loadBoards(0));
 
 /* -------------------- 게시글 목록 -------------------- */
 async function loadBoards(page = 0) {
-    const response = await fetch(`${API_URL}?page=${page}&size=10&sort=createdAt,asc`);
+    const response = await fetch(`${API_URL}?page=${page}&size=10&sort=createdAt,desc`);
     const data = await response.json();
 
-    const boards = data.content;         // ✅ 실제 게시글 리스트
-    const totalPages = data.totalPages;  // ✅ 전체 페이지 수
-    const currentPage = data.number;     // ✅ 현재 페이지 (0부터 시작)
+    const boards = data.content;
+    const currentPage = data.number;  // 0부터 시작
+    const pageSize = data.size;
 
-    // 테이블 본문 채우기
     const tableBody = document.querySelector("#board-list");
     tableBody.innerHTML = "";
 
     boards.forEach((board, index) => {
+        // ✅ "삭제돼도 1부터 시작" → 단순히 현재 페이지에서 1번부터 매기기
+        const rowNumber = index + 1 + (currentPage * pageSize);
+
         const row = `
             <tr>
-                <td>${page * 10 + index + 1}</td>   <!-- ✅ 번호 자동 증가 -->
-                <td>
-                    <a href="detail.html?id=${board.id}">
-                        ${board.title}
-                    </a>
-                </td>
+                <td>${rowNumber}</td>
+                <td><a href="detail.html?id=${board.id}">${board.title}</a></td>
                 <td>${board.author}</td>
                 <td>${board.createdAt ? board.createdAt.substring(0, 10) : ""}</td>
             </tr>
@@ -32,9 +30,9 @@ async function loadBoards(page = 0) {
         tableBody.innerHTML += row;
     });
 
-    // 페이지네이션 버튼 생성
-    renderPagination(totalPages, currentPage);
+    renderPagination(data.totalPages, currentPage);
 }
+
 
 /* -------------------- 페이지네이션 -------------------- */
 function renderPagination(totalPages, currentPage) {
