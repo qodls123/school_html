@@ -55,15 +55,10 @@
         </div>
 
         <div class="sort-controls">
-            <label for="sort-type">정렬: </label>
-            <select id="sort-type" onchange="loadBoards(0)">
-                <option value="createdAt,desc">최신순</option>
-                <option value="createdAt,asc">오래된순</option>
-                <option value="id,desc">번호 높은순</option>
-                <option value="id,asc">번호 낮은순</option>
-                <option value="title,asc">제목순 (가나다)</option>
-            </select>
+            <button onclick="setSort('createdAt,desc')">최신순</button>
+            <button onclick="setSort('createdAt,asc')">오래된순</button>
         </div>
+
 
         <!-- 게시판 목록 테이블 -->
         <table class="board-table">

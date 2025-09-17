@@ -7,10 +7,15 @@ document.addEventListener("DOMContentLoaded", () => loadBoards(0));
 /* ============================= */
 /*        게시판 목록 불러오기     */
 /* ============================= */
-async function loadBoards(page = 0) {
-    const sortType = document.querySelector("#sort-type")?.value || "createdAt,desc";
+let currentSort = "createdAt,desc"; // 기본값: 최신순
 
-    const response = await fetch(`${API_URL}?page=${page}&size=10&sort=${sortType}`);
+function setSort(sortType) {
+  currentSort = sortType;
+  loadBoards(0); // 정렬 변경 시 첫 페이지부터 다시 불러오기
+}
+
+async function loadBoards(page = 0) {
+    const response = await fetch(`${API_URL}?page=${page}&size=10&sort=${currentSort}`);
     const data = await response.json();
 
     const boards = data.content;
@@ -35,6 +40,7 @@ async function loadBoards(page = 0) {
 
     renderPagination(totalPages, currentPage);
 }
+
 
 
 /* ============================= */
