@@ -8,30 +8,24 @@ document.addEventListener("DOMContentLoaded", () => loadBoards(0));
 /*        게시판 목록 불러오기     */
 /* ============================= */
 async function loadBoards(page = 0) {
-    const response = await fetch(`${API_URL}?page=${page}&size=${pageSize}&sort=createdAt,desc`);
+    const sortType = document.querySelector("#sort-type")?.value || "createdAt,desc";
+
+    const response = await fetch(`${API_URL}?page=${page}&size=10&sort=${sortType}`);
     const data = await response.json();
 
-    const boards = data.content;   // ✅ 게시글 리스트
-    const totalPages = data.totalPages; 
-    const currentPage = data.number;    
-    const totalElements = data.totalElements; // ✅ 전체 글 개수
+    const boards = data.content;
+    const totalPages = data.totalPages;
+    const currentPage = data.number;
 
-    // 테이블 본문 채우기
     const tableBody = document.querySelector("#board-list");
     tableBody.innerHTML = "";
 
     boards.forEach((board, index) => {
-        // ✅ 최신글이 위 → 번호는 가장 크게 시작
-        const rowNumber = totalElements - (currentPage * pageSize) - index;
-
+        const displayNumber = boards.length - index + (page * 10); // ✅ 삭제해도 번호 재정렬
         const row = `
             <tr>
-                <td>${rowNumber}</td>
-                <td>
-                    <a href="detail.html?id=${board.id}">
-                        ${board.title}
-                    </a>
-                </td>
+                <td>${displayNumber}</td>
+                <td><a href="detail.html?id=${board.id}">${board.title}</a></td>
                 <td>${board.author}</td>
                 <td>${board.createdAt ? board.createdAt.substring(0, 10) : ""}</td>
             </tr>
@@ -41,6 +35,7 @@ async function loadBoards(page = 0) {
 
     renderPagination(totalPages, currentPage);
 }
+
 
 /* ============================= */
 /*        페이지네이션 처리        */
