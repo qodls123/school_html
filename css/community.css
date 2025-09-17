@@ -168,11 +168,41 @@ header {
     background: #1e40af;
 }
 
+/* 정렬 버튼 */
+.sort-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.sort-buttons button {
+    padding: 8px 16px;
+    background: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 16px;
+}
+
+.sort-buttons button:hover {
+    background: #e5e5e5;
+    border-color: #aaa;
+}
+
+/* 활성화된 정렬 버튼 */
+.sort-buttons button.active {
+    background: #2563eb;
+    color: #fff;
+    border-color: #2563eb;
+}
+
+
 /* 검색 영역 */
 .board-search {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    flex-direction: column; /* ✅ 세로 배치 */
+    align-items: flex-end;  /* ✅ 오른쪽 정렬 */
     gap: 10px;
     margin-bottom: 20px;
 }
@@ -199,7 +229,6 @@ header {
     background: #1e40af;
 }
 
-.active-page { font-weight: bold; color: blue; }
 
 /*footer*/
 .footer {
