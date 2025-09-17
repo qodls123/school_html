@@ -3,22 +3,23 @@ const API_URL = "/api/boards";
 // 페이지 로딩 시 게시글 목록 불러오기
 document.addEventListener("DOMContentLoaded", () => loadBoards(0));
 
+/* -------------------- 게시글 목록 -------------------- */
 async function loadBoards(page = 0) {
     const response = await fetch(`${API_URL}?page=${page}&size=10&sort=createdAt,desc`);
     const data = await response.json();
 
-    const boards = data.content;   // ✅ 실제 게시글 리스트
-    const totalPages = data.totalPages; // ✅ 전체 페이지 수
-    const currentPage = data.number;    // ✅ 현재 페이지 (0부터 시작)
+    const boards = data.content;         // ✅ 실제 게시글 리스트
+    const totalPages = data.totalPages;  // ✅ 전체 페이지 수
+    const currentPage = data.number;     // ✅ 현재 페이지 (0부터 시작)
 
     // 테이블 본문 채우기
     const tableBody = document.querySelector("#board-list");
     tableBody.innerHTML = "";
 
-    boards.forEach(board => {
+    boards.forEach((board, index) => {
         const row = `
             <tr>
-                <td>${index + 1}</td>
+                <td>${page * 10 + index + 1}</td>   <!-- ✅ 번호 자동 증가 -->
                 <td>
                     <a href="detail.html?id=${board.id}">
                         ${board.title}
@@ -35,6 +36,7 @@ async function loadBoards(page = 0) {
     renderPagination(totalPages, currentPage);
 }
 
+/* -------------------- 페이지네이션 -------------------- */
 function renderPagination(totalPages, currentPage) {
     const pagination = document.querySelector(".pagination");
     pagination.innerHTML = "";
@@ -67,7 +69,7 @@ function renderPagination(totalPages, currentPage) {
     }
 }
 
-
+/* -------------------- 글 작성 -------------------- */
 async function createBoard() {
     const title = document.querySelector("#title").value;
     const content = document.querySelector("#content").value;
@@ -87,6 +89,7 @@ async function createBoard() {
     }
 }
 
+/* -------------------- 글 삭제 -------------------- */
 async function deleteBoard(id) {
     if (!confirm("정말 삭제하시겠습니까?")) return;
 
@@ -100,7 +103,7 @@ async function deleteBoard(id) {
     }
 }
 
-// 검색 기능 (페이징 제외, 필요 시 추가 가능)
+/* -------------------- 검색 -------------------- */
 async function searchBoards() {
     const type = document.querySelector("#search-type").value;
     const keyword = document.querySelector("#search-keyword").value;
@@ -115,7 +118,6 @@ async function searchBoards() {
             credentials: "include"
         });
 
-
         if (!response.ok) {
             throw new Error("서버 오류 발생");
         }
@@ -129,10 +131,10 @@ async function searchBoards() {
             return;
         }
 
-        boards.forEach(board => {
+        boards.forEach((board, index) => {
             const row = `
                 <tr>
-                    <td>${board.id}</td>
+                    <td>${index + 1}</td>   <!-- ✅ 검색 결과 번호 (1부터 시작) -->
                     <td><a href="detail.html?id=${board.id}">${board.title}</a></td>
                     <td>${board.author}</td>
                     <td>${board.createdAt ? board.createdAt.substring(0, 10) : ""}</td>
