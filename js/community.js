@@ -1,28 +1,37 @@
 const API_URL = "/api/boards";
+const pageSize = 10; // ✅ 한 페이지에 보여줄 게시글 수
 
 // 페이지 로딩 시 게시글 목록 불러오기
 document.addEventListener("DOMContentLoaded", () => loadBoards(0));
 
-/* -------------------- 게시글 목록 -------------------- */
+/* ============================= */
+/*        게시판 목록 불러오기     */
+/* ============================= */
 async function loadBoards(page = 0) {
-    const response = await fetch(`${API_URL}?page=${page}&size=10&sort=createdAt,desc`);
+    const response = await fetch(`${API_URL}?page=${page}&size=${pageSize}&sort=createdAt,desc`);
     const data = await response.json();
 
-    const boards = data.content;
-    const currentPage = data.number;  // 0부터 시작
-    const pageSize = data.size;
+    const boards = data.content;   // ✅ 게시글 리스트
+    const totalPages = data.totalPages; 
+    const currentPage = data.number;    
+    const totalElements = data.totalElements; // ✅ 전체 글 개수
 
+    // 테이블 본문 채우기
     const tableBody = document.querySelector("#board-list");
     tableBody.innerHTML = "";
 
     boards.forEach((board, index) => {
-        // ✅ "삭제돼도 1부터 시작" → 단순히 현재 페이지에서 1번부터 매기기
-        const rowNumber = index + 1 + (currentPage * pageSize);
+        // ✅ 최신글이 위 → 번호는 가장 크게 시작
+        const rowNumber = totalElements - (currentPage * pageSize) - index;
 
         const row = `
             <tr>
                 <td>${rowNumber}</td>
-                <td><a href="detail.html?id=${board.id}">${board.title}</a></td>
+                <td>
+                    <a href="detail.html?id=${board.id}">
+                        ${board.title}
+                    </a>
+                </td>
                 <td>${board.author}</td>
                 <td>${board.createdAt ? board.createdAt.substring(0, 10) : ""}</td>
             </tr>
@@ -30,16 +39,16 @@ async function loadBoards(page = 0) {
         tableBody.innerHTML += row;
     });
 
-    renderPagination(data.totalPages, currentPage);
+    renderPagination(totalPages, currentPage);
 }
 
-
-/* -------------------- 페이지네이션 -------------------- */
+/* ============================= */
+/*        페이지네이션 처리        */
+/* ============================= */
 function renderPagination(totalPages, currentPage) {
     const pagination = document.querySelector(".pagination");
     pagination.innerHTML = "";
 
-    // 이전 버튼
     if (currentPage > 0) {
         const prevBtn = document.createElement("button");
         prevBtn.textContent = "이전";
@@ -47,18 +56,14 @@ function renderPagination(totalPages, currentPage) {
         pagination.appendChild(prevBtn);
     }
 
-    // 페이지 번호 버튼
     for (let i = 0; i < totalPages; i++) {
         const pageBtn = document.createElement("button");
         pageBtn.textContent = i + 1;
-        if (i === currentPage) {
-            pageBtn.disabled = true; // ✅ 현재 페이지는 비활성화
-        }
+        if (i === currentPage) pageBtn.disabled = true;
         pageBtn.onclick = () => loadBoards(i);
         pagination.appendChild(pageBtn);
     }
 
-    // 다음 버튼
     if (currentPage < totalPages - 1) {
         const nextBtn = document.createElement("button");
         nextBtn.textContent = "다음";
@@ -67,27 +72,9 @@ function renderPagination(totalPages, currentPage) {
     }
 }
 
-/* -------------------- 글 작성 -------------------- */
-async function createBoard() {
-    const title = document.querySelector("#title").value;
-    const content = document.querySelector("#content").value;
-    const author = document.querySelector("#author").value;
-
-    const response = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, content, author })
-    });
-
-    if (response.ok) {
-        alert("글이 등록되었습니다.");
-        window.location.href = "community.html"; // 목록 페이지로 이동
-    } else {
-        alert("등록 실패");
-    }
-}
-
-/* -------------------- 글 삭제 -------------------- */
+/* ============================= */
+/*        게시글 삭제 기능        */
+/* ============================= */
 async function deleteBoard(id) {
     if (!confirm("정말 삭제하시겠습니까?")) return;
 
@@ -95,13 +82,15 @@ async function deleteBoard(id) {
 
     if (response.ok) {
         alert("삭제 완료");
-        loadBoards(0); // 삭제 후 첫 페이지 다시 불러오기
+        loadBoards(0);
     } else {
         alert("삭제 실패");
     }
 }
 
-/* -------------------- 검색 -------------------- */
+/* ============================= */
+/*        검색 기능 (번호 포함)   */
+/* ============================= */
 async function searchBoards() {
     const type = document.querySelector("#search-type").value;
     const keyword = document.querySelector("#search-keyword").value;
@@ -116,9 +105,7 @@ async function searchBoards() {
             credentials: "include"
         });
 
-        if (!response.ok) {
-            throw new Error("서버 오류 발생");
-        }
+        if (!response.ok) throw new Error("서버 오류 발생");
 
         const boards = await response.json();
         const tableBody = document.querySelector("#board-list");
@@ -129,10 +116,12 @@ async function searchBoards() {
             return;
         }
 
+        // ✅ 검색 결과도 번호는 최신 → 오래된 순서
         boards.forEach((board, index) => {
+            const rowNumber = boards.length - index; // 검색 결과는 현재 목록 길이 기준
             const row = `
                 <tr>
-                    <td>${index + 1}</td>   <!-- ✅ 검색 결과 번호 (1부터 시작) -->
+                    <td>${rowNumber}</td>
                     <td><a href="detail.html?id=${board.id}">${board.title}</a></td>
                     <td>${board.author}</td>
                     <td>${board.createdAt ? board.createdAt.substring(0, 10) : ""}</td>
@@ -141,8 +130,7 @@ async function searchBoards() {
             tableBody.innerHTML += row;
         });
 
-        // 검색 시 페이지네이션 제거 (필요시 구현 가능)
-        document.querySelector(".pagination").innerHTML = "";
+        document.querySelector(".pagination").innerHTML = ""; // 검색 시 페이지네이션 제거
     } catch (error) {
         console.error(error);
         alert("검색 실패: " + error.message);
