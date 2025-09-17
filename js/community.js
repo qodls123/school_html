@@ -18,7 +18,7 @@ async function loadBoards(page = 0) {
     boards.forEach(board => {
         const row = `
             <tr>
-                <td>${board.id}</td>
+                <td>${index + 1}</td>
                 <td>
                     <a href="detail.html?id=${board.id}">
                         ${board.title}
