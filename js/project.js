@@ -43,59 +43,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 🕵️ Deepfake Detection (파일 업로드)
-  document.getElementById("deepfake-form").addEventListener("submit", async (e) => {
+  // 💬 RAG Chatbot
+  document.getElementById("rag-form").addEventListener("submit", async (e) => {
     e.preventDefault();
-    const fileInput = document.getElementById("deepfake-file");
-    if (!fileInput.files.length) return;
-
-    const formData = new FormData();
-    formData.append("file", fileInput.files[0]);
+    const q = document.getElementById("rag-question").value.trim();
+    const resultDiv = document.getElementById("rag-result");
+    resultDiv.textContent = "⏳ 답변을 불러오는 중...";
 
     try {
-      const res = await fetch("https://ingyu-portfolio.com/api/deepfake", {
+      const res = await fetch("https://ingyu-portfolio.com/api/rag", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: q })
       });
-      const data = await res.json();
 
-      if (data.error) {
-        document.getElementById("deepfake-result").innerHTML =
-          `<p style="color:red;">에러: ${data.error}</p>`;
-      } else {
-        document.getElementById("deepfake-result").innerHTML =
-          `<p>분석 결과: ${data.result}</p>
-           <p>신뢰도: ${data.probability}</p>`;
-      }
+      if (!res.ok) throw new Error("서버 오류 " + res.status);
+      const data = await res.json();
+      resultDiv.innerHTML = `
+        <p><strong>답변:</strong> ${data.answer}</p>
+        <p><em>출처:</em> ${data.sources?.map(s => `[${s.id}] ${s.source}`).join(", ") || "없음"}</p>
+      `;
     } catch (err) {
-      document.getElementById("deepfake-result").innerHTML =
-        `<p style="color:red;">서버 연결 실패 😢</p>`;
+      resultDiv.textContent = "❌ 오류: " + err.message;
     }
   });
-
-  // RAG Chatbot
-document.getElementById("rag-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const q = document.getElementById("rag-question").value.trim();
-  const resultDiv = document.getElementById("rag-result");
-  resultDiv.textContent = "⏳ 답변을 불러오는 중...";
-
-  try {
-    const res = await fetch("https://ingyu-portfolio.com/api/rag", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question: q })
-    });
-
-    if (!res.ok) throw new Error("서버 오류 " + res.status);
-    const data = await res.json();
-    resultDiv.innerHTML = `
-      <p><strong>답변:</strong> ${data.answer}</p>
-      <p><em>출처:</em> ${data.sources.map(s => `[${s.id}] ${s.source}`).join(", ")}</p>
-    `;
-  } catch (err) {
-    resultDiv.textContent = "❌ 오류: " + err.message;
-  }
-});
-
 });
