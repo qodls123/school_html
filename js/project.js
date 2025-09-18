@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const windspeed = document.getElementById("windspeed").value;
 
     try {
-      const res = await fetch("http://127.0.0.1:4999/RainFall", {
+      const res = await fetch("https://ingyu-portfolio.com/api/rain", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ humidity, cloud, sunshine, windspeed }),
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formData.append("file", fileInput.files[0]);
 
     try {
-      const res = await fetch("http://127.0.0.1:4999/APITest", {
+      const res = await fetch("https://ingyu-portfolio.com/api/deepfake", {
         method: "POST",
         body: formData,
       });
@@ -81,7 +81,7 @@ document.getElementById("rag-form").addEventListener("submit", async (e) => {
   resultDiv.textContent = "⏳ 답변을 불러오는 중...";
 
   try {
-    const res = await fetch("http://localhost:4999/ChatRAG", {
+    const res = await fetch("https://ingyu-portfolio.com/api/rag", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question: q })
